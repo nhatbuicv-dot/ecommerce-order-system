@@ -20,3 +20,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+jwt:
+  signerKey: "gbBX%wjlTtKWoy$90VJae1hJg1^/ugzzRlZuF01ccC8="
+  valid-duration: 3600 # in second
+  refreshable-duration: 36000 # in seconds
+
