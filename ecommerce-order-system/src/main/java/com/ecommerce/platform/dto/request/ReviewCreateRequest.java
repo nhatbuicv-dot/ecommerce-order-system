@@ -8,6 +8,8 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class RefreshToken {
-    String token ;
+public class ReviewCreateRequest {
+    private String userName;
+    private int rating;
+    private String comment;
 }

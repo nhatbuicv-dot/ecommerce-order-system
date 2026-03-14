@@ -1,0 +1,15 @@
+package com.ecommerce.platform.dto.response;
+
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class CategoryResponse {
+    String name ;
+    String description;
+    int productCount;
+}

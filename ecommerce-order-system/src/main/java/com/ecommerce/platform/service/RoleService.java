@@ -18,9 +18,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class RoleService {
-    private final RoleMapper roleMapper;
-    private final PermissionRepository permissionRepository;
-    private final RoleRepository roleRepository;
+    RoleMapper roleMapper;
+    PermissionRepository permissionRepository;
+    RoleRepository roleRepository;
 
     public RoleResponse createRole(RoleRequest roleRequest) {
         var role = roleMapper.toRole(roleRequest);

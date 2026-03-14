@@ -2,7 +2,7 @@ package com.ecommerce.platform.service;
 
 import com.ecommerce.platform.dto.request.AuthenticationRequest;
 import com.ecommerce.platform.dto.request.LogoutRequest;
-import com.ecommerce.platform.dto.request.RefreshToken;
+import com.ecommerce.platform.dto.request.RefreshTokenRequest;
 import com.ecommerce.platform.dto.response.AuthenticationResponse;
 import com.ecommerce.platform.entity.InvalidatedToken;
 import com.ecommerce.platform.entity.User;
@@ -21,14 +21,14 @@ import lombok.experimental.FieldDefaults;
 import lombok.experimental.NonFinal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.text.ParseException;
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @Service
@@ -36,7 +36,7 @@ import java.util.UUID;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Slf4j
 public class AuthenticationService {
-
+    PasswordEncoder passwordEncoder;
     UserRepository userRepository;
     InvalidatedTokenRepository invalidatedTokenRepository;
 
@@ -62,7 +62,8 @@ public class AuthenticationService {
                 .expirationTime(Date.from(Instant.now().plusSeconds(VALID_DURATION))) //instant.now là lấy thời điểm hiện tại , plusSeconds là cộng thêm 300s
                 .jwtID(UUID.randomUUID().toString())
                 .claim("type", "access")
-                .claim("ROLE_",user.getRoles())
+                .claim("scope",buildScope(user))
+                .claim("username", user.getUsername())
                 .build();
 
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());
@@ -127,7 +128,6 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest) {
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         var user = userRepository.findByUsername(authenticationRequest.getUsername()).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
 
         if(!passwordEncoder.matches(authenticationRequest.getPassword(), user.getPassword())) {
@@ -161,8 +161,8 @@ public class AuthenticationService {
         }
     }
 
-    public AuthenticationResponse refreshToken(RefreshToken refreshToken) throws ParseException, JOSEException {
-        var signedJWT = verifyToken(refreshToken.getToken(),"refresh");
+    public AuthenticationResponse refreshToken(RefreshTokenRequest refreshTokenRequest) throws ParseException, JOSEException {
+        var signedJWT = verifyToken(refreshTokenRequest.getToken(),"refresh");
 
         String userId = signedJWT.getJWTClaimsSet().getSubject();
 
@@ -184,5 +184,18 @@ public class AuthenticationService {
                 .refreshToken(refreshtoken)
                 .accessToken(accessToken)
                 .build();
+    }
+
+    private String buildScope(User user) {
+        StringJoiner stringJoiner = new StringJoiner(" ");
+
+        if (!CollectionUtils.isEmpty(user.getRoles()))
+            user.getRoles().forEach(role -> {
+                stringJoiner.add("ROLE_" + role.getName());
+                if (!CollectionUtils.isEmpty(role.getPermissions()))
+                    role.getPermissions().forEach(permission -> stringJoiner.add(permission.getName()));
+            });
+
+        return stringJoiner.toString();
     }
 }

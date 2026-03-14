@@ -1,0 +1,16 @@
+package com.ecommerce.platform.dto.request;
+
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class ProductVariantCreateRequest {
+    String color;
+    String storage;
+    double price;
+    int quantity;
+}

@@ -2,7 +2,7 @@ package com.ecommerce.platform.controller;
 
 import com.ecommerce.platform.dto.request.AuthenticationRequest;
 import com.ecommerce.platform.dto.request.LogoutRequest;
-import com.ecommerce.platform.dto.request.RefreshToken;
+import com.ecommerce.platform.dto.request.RefreshTokenRequest;
 import com.ecommerce.platform.dto.response.ApiResponse;
 import com.ecommerce.platform.dto.response.AuthenticationResponse;
 import com.ecommerce.platform.service.AuthenticationService;
@@ -41,7 +41,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/refresh")
-    ApiResponse<AuthenticationResponse> refresh(@RequestBody RefreshToken request) throws ParseException, JOSEException {
+    ApiResponse<AuthenticationResponse> refresh(@RequestBody RefreshTokenRequest request) throws ParseException, JOSEException {
         var result = authenticationService.refreshToken(request);
         return ApiResponse.<AuthenticationResponse>builder().result(result).build();
     }

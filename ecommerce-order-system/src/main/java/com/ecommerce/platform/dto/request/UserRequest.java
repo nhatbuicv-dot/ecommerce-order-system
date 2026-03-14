@@ -1,5 +1,6 @@
 package com.ecommerce.platform.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import jakarta.validation.constraints.Size;
@@ -12,10 +13,12 @@ import java.time.LocalDate;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserRequest {
+    @NotBlank
     @Size(min = 4, message = "USERNAME_INVALID")
     String username;
 
-    @Size(min = 6, message = "INVALID_PASSWORD")
+    @NotBlank
+    @Size(min = 6, message = "PASSWORD_INVALID")
     String password;
 
     String firstName;

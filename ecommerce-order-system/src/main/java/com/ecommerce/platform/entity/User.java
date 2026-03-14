@@ -1,9 +1,14 @@
 package com.ecommerce.platform.entity;
 
 import jakarta.persistence.*;
+        import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
+        import lombok.experimental.FieldDefaults;
+
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -16,9 +21,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
-    String username;
-    String password;
 
+    @Column(unique = true,nullable = false)
+    String username;
+
+    @Column(nullable = false)
+    String password;
+    String firstName;
+    String lastName;
+    LocalDate dob;
+    String city;
     @ManyToMany
-    List<Role> roles;
+    Set<Role> roles;
 }
