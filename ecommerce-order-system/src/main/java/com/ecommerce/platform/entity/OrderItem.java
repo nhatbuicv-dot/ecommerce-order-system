@@ -1,8 +1,6 @@
 package com.ecommerce.platform.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -13,23 +11,20 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Review {
-
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
-    Product product;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    Order order;
 
     @ManyToOne
-    User user;
+    @JoinColumn(name = "product_variant_id")
+    ProductVariant productVariant;
 
-    @Min(1)
-    @Max(5)
-    int rating;
+    int quantity;
 
-    @Column(columnDefinition = "TEXT")
-    String comment;
+    Double price;
 }

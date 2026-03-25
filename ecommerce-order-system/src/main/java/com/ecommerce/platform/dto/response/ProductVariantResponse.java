@@ -1,18 +1,18 @@
 package com.ecommerce.platform.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.ecommerce.platform.entity.Color;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProductVariantResponse {
-    private String id;
-    private String color;
-    private String storage;
-    private double price;
-    private int quantity;
+     String id;
+     ColorResponse color;
+     String size;
+     double price;
+     int quantity;
 }

@@ -21,7 +21,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +59,7 @@ public class ProductService {
             for (ProductVariantCreateRequest productVariantCreateRequest : productCreateRequest.getVariants()) {
                 ProductVariant variant = productVariantMapper.toProductVariant(productVariantCreateRequest);
                 product.addVariant(variant);
+                product.recalculatePrice();
             }
         }
 
@@ -100,6 +103,7 @@ public class ProductService {
                 for (ProductVariantCreateRequest variantRequest : request.getVariants()) {
                     ProductVariant variant = productVariantMapper.toProductVariant(variantRequest);
                     product.addVariant(variant);
+                    product.recalculatePrice();
                 }
             }
 
@@ -122,31 +126,37 @@ public class ProductService {
 
     @PreAuthorize("hasRole('ADMIN')")
     @Transactional
-    public ProductResponse updateProduct(ProductUpdateRequest productUpdateRequest, String productId) {
-        var product = productRepository.findById(productId).orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
+    public ProductResponse updateProduct(ProductUpdateRequest request, String productId) {
+        var product = productRepository.findById(productId)
+                .orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
 
-        Category category = categoryRepository.findById(productUpdateRequest.getCategoryId())
-                .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_FOUND));
+        if (request.getCategoryId() != null) {
+            Category category = categoryRepository.findById(request.getCategoryId())
+                    .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_FOUND));
 
-        product.setCategory(category);
+            product.setCategory(category);
+        }
 
-        if (productUpdateRequest.getVariants() != null) {
-            for (ProductVariantCreateRequest productVariantCreateRequest : productUpdateRequest.getVariants()) {
-                ProductVariant variant = productVariantMapper.toProductVariant(productVariantCreateRequest);
+
+        productMapper.updateProduct(product, request);
+
+        if (request.getVariants() != null) {
+            product.getVariants().clear();
+            for (var variantRequest : request.getVariants()) {
+                ProductVariant variant = productVariantMapper.toProductVariant(variantRequest);
                 product.addVariant(variant);
             }
         }
 
-        // images
-        if (productUpdateRequest.getImages() != null) {
-            for (String url : productUpdateRequest.getImages()) {
+        if (request.getImages() != null) {
+            product.getImages().clear();
+            for (String url : request.getImages()) {
                 ProductImage image = new ProductImage();
                 image.setImageUrl(url);
                 product.addImage(image);
             }
+            product.recalculatePrice();
         }
-
-        productMapper.updateProduct(product, productUpdateRequest);
 
         return productMapper.toProductResponse(productRepository.save(product));
     }
@@ -155,11 +165,8 @@ public class ProductService {
     public void deleteProduct(String productId) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
+        product.recalculatePrice();
         productRepository.deleteById(productId);
-    }
-
-    public Page<ProductListResponse> getProducts(Pageable pageable) {
-        return productRepository.getProductList(pageable);
     }
 
     public ProductResponse getProduct(String productId) {
@@ -169,4 +176,9 @@ public class ProductService {
         return productMapper.toProductResponse(product);
     }
 
+    public Page<ProductListResponse> getProducts(int page, int size, String sortField, String direction) {
+        Sort sort = Sort.by(direction.equalsIgnoreCase("DESC") ? Sort.Direction.DESC : Sort.Direction.ASC, sortField);
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return productRepository.getProductList(pageable);
+    }
 }

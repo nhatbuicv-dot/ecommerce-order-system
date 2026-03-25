@@ -11,29 +11,31 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, String> {
+
     Optional<Product> findByName(String productName);
 
-    @EntityGraph(attributePaths = {"category", "images", "variants", "reviews"})
+    @EntityGraph(attributePaths = {"category"})
     Page<Product> findAll(Pageable pageable);
 
-    @Query("""
-            SELECT new com.ecommerce.platform.dto.response.ProductListResponse(
-                p.id,
-                p.name,
-                p.brand,
-                (SELECT i.imageUrl 
-                    FROM ProductImage i 
-                    WHERE i.id = (
-                        SELECT MIN(i2.id) 
-                        FROM ProductImage i2 
-                        WHERE i2.product.id = p.id
-                    )
-                ),
-                p.minPrice,
-                p.rating,
-                p.numReviews
-            )
-            FROM Product p
-            """)
+    @Override
+    @EntityGraph(attributePaths = {"category", "variants", "images"})
+    Optional<Product> findById(String id);
+
+    @Query(
+            value = """
+        SELECT new com.ecommerce.platform.dto.response.ProductListResponse(
+            p.id,
+            p.name,
+            p.brand,
+            MIN(i.imageUrl),
+            p.minPrice,
+            p.maxPrice
+        )
+        FROM Product p
+        LEFT JOIN p.images i
+        GROUP BY p.id, p.name, p.brand, p.minPrice, p.maxPrice
+    """,
+            countQuery = "SELECT COUNT(p) FROM Product p"
+    )
     Page<ProductListResponse> getProductList(Pageable pageable);
 }

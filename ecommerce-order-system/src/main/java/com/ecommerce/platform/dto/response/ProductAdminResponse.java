@@ -1,9 +1,7 @@
 package com.ecommerce.platform.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 
@@ -11,19 +9,16 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProductAdminResponse {
 
-    private String id;
-    private String name;
-    private String brand;
-    private String description;
+     String id;
+     String name;
+     String brand;
+     String description;
+     String categoryName;
 
-    private double rating;
-    private int numReviews;
-
-    private String categoryName;
-
-    private int totalStock;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+     int totalStock;
+     LocalDateTime createdAt;
+     LocalDateTime updatedAt;
 }

@@ -1,5 +1,6 @@
 package com.ecommerce.platform.service;
 
+import com.ecommerce.platform.configuration.SecurityUtils;
 import com.ecommerce.platform.constant.PredefinedRole;
 import com.ecommerce.platform.dto.request.UserRequest;
 import com.ecommerce.platform.dto.request.UserUpdate;
@@ -31,7 +32,8 @@ public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
     PasswordEncoder passwordEncoder;
-    private final RoleRepository roleRepository;
+    RoleRepository roleRepository;
+    SecurityUtils securityUtils;
 
     public UserResponse createUser(UserRequest userRequest) {
         if(userRepository.existsByUsername(userRequest.getUsername())) throw new AppException(ErrorCode.USER_ALREADY_EXISTED);
@@ -73,8 +75,7 @@ public class UserService {
     }
 
     public UserResponse getMyInfo (){
-        var context = SecurityContextHolder.getContext();
-        String id = context.getAuthentication().getName();
+        String id = securityUtils.getCurrentUserId();
 
         User user = userRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
 

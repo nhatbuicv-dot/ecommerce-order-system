@@ -6,6 +6,7 @@ import com.ecommerce.platform.dto.response.ApiResponse;
 import com.ecommerce.platform.dto.response.ProductListResponse;
 import com.ecommerce.platform.dto.response.ProductResponse;
 import com.ecommerce.platform.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -40,18 +41,12 @@ public class ProductController {
     }
 
     @PutMapping("/{productId}")
-    ApiResponse<ProductResponse> updateProduct (@RequestBody ProductUpdateRequest productUpdateRequest , @PathVariable String productId) {
+    ApiResponse<ProductResponse> updateProduct (@RequestBody @Valid ProductUpdateRequest productUpdateRequest , @PathVariable String productId) {
         return ApiResponse.<ProductResponse>builder()
                 .result(productService.updateProduct(productUpdateRequest, productId))
                 .build();
     }
 
-    @GetMapping("/list")
-    ApiResponse<Page<ProductListResponse>> getProducts(Pageable pageable) {
-        return ApiResponse.<Page<ProductListResponse>>builder()
-                .result(productService.getProducts(pageable))
-                .build();
-    }
 
     @GetMapping("/{productId}")
     ApiResponse<ProductResponse> getProduct (@PathVariable String productId) {
@@ -65,6 +60,18 @@ public class ProductController {
         productService.deleteProduct(productId);
         return ApiResponse.<String>builder()
                 .result("Product has been deleted")
+                .build();
+    }
+
+    @GetMapping("/list")
+    public ApiResponse<Page<ProductListResponse>> getAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "name") String sortField,
+            @RequestParam(defaultValue = "ASC") String direction
+    ) {
+        return ApiResponse.<Page<ProductListResponse>>builder()
+                .result(productService.getProducts(page, size, sortField, direction))
                 .build();
     }
 }

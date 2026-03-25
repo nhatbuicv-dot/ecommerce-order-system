@@ -1,10 +1,8 @@
 package com.ecommerce.platform.dto.response;
 
 import com.ecommerce.platform.entity.ProductImage;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
@@ -12,19 +10,18 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProductResponse {
 
-    private String id;
-    private String name;
-    private String brand;
-    private String description;
+    String id;
+    String name;
+    String brand;
+    String description;
+    String categoryName;
+    Double minPrice;
+    Double maxPrice;
 
-    private double rating;
-    private int numReviews;
+    List<ProductImageResponse> images;
 
-    private String categoryId;
-
-    private List<ProductImageResponse> images;
-
-    private List<ProductVariantResponse> variants;
+    List<ProductVariantResponse> variants;
 }

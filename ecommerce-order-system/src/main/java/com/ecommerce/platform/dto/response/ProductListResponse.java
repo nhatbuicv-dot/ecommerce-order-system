@@ -1,24 +1,18 @@
 package com.ecommerce.platform.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProductListResponse {
-
-    private String id;
-    private String name;
-    private String brand;
-
-    private String thumbnail;     // image đầu tiên
-
-    private Double minPrice;      // giá thấp nhất trong variants
-
-    private Double rating;
-    private Integer numReviews;
+     String id;
+     String name;
+     String brand;
+     String thumbnail;
+     Double minPrice;
+     Double maxPrice;
 }

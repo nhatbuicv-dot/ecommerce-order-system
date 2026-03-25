@@ -1,9 +1,7 @@
 package com.ecommerce.platform.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
@@ -11,11 +9,12 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProductCreateRequest {
-    private String name;
-    private String brand;
-    private String description;
-    private String categoryId;
-    private List<String> images;
-    private List<ProductVariantCreateRequest> variants;
+     String name;
+     String brand;
+     String description;
+     String categoryId;
+     List<String> images;
+     List<ProductVariantCreateRequest> variants;
 }

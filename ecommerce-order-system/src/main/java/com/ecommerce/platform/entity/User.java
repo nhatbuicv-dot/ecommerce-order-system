@@ -7,6 +7,7 @@ import lombok.*;
         import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -24,6 +25,11 @@ public class User {
 
     @Column(unique = true,nullable = false)
     String username;
+
+    @Builder.Default
+    @OneToMany(mappedBy = "user")
+    List<Order> orders = new ArrayList<>();
+
 
     @Column(nullable = false)
     String password;

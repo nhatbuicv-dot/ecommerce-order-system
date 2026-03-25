@@ -2,11 +2,13 @@ package com.ecommerce.platform.service;
 
 import com.ecommerce.platform.dto.request.ProductVariantCreateRequest;
 import com.ecommerce.platform.dto.response.ProductVariantResponse;
+import com.ecommerce.platform.entity.Color;
 import com.ecommerce.platform.entity.Product;
 import com.ecommerce.platform.entity.ProductVariant;
 import com.ecommerce.platform.exception.AppException;
 import com.ecommerce.platform.exception.ErrorCode;
 import com.ecommerce.platform.mapper.ProductVariantMapper;
+import com.ecommerce.platform.repository.ColorRepository;
 import com.ecommerce.platform.repository.ProductRepository;
 import com.ecommerce.platform.repository.ProductVariantRepository;
 import lombok.AccessLevel;
@@ -25,6 +27,7 @@ public class ProductVariantService {
     ProductRepository productRepository;
     ProductVariantRepository productVariantRepository;
     ProductVariantMapper productVariantMapper;
+    private final ColorRepository colorRepository;
 
     public ProductVariantResponse createProductVariant(ProductVariantCreateRequest request, String productId) {
 
@@ -32,6 +35,11 @@ public class ProductVariantService {
                 .orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
 
         var productVariant = productVariantMapper.toProductVariant(request);
+
+        Color color = colorRepository.findById(request.getColor().getId())
+                .orElseThrow(() -> new AppException(ErrorCode.COLOR_NOT_FOUND));
+
+        productVariant.setColor(color);
 
         productVariant.setProduct(product);
 
@@ -61,5 +69,4 @@ public class ProductVariantService {
 
         return productVariantMapper.toProductVariantResponse(productVariant);
     }
-
 }

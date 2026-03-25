@@ -22,6 +22,12 @@ public enum ErrorCode {
     PRODUCT_VARIANT_NOT_FOUND(1013, "ProductVariant not found", HttpStatus.NOT_FOUND),
     IMAGE_NOT_FOUND(1013, "Image not found", HttpStatus.NOT_FOUND),
     USERNAME_INVALID_FORMAT(1014, "Username invalid format", HttpStatus.BAD_REQUEST),
+    CART_ITEM_NOT_FOUND(1015, "Cart item not found", HttpStatus.NOT_FOUND),
+    CART_NOT_FOUND(1016, "Cart not found", HttpStatus.NOT_FOUND),
+    CART_EMPTY(1017, "Cart are empty", HttpStatus.BAD_REQUEST),
+    OUT_OF_STOCK(1018, "Product is out of stock", HttpStatus.BAD_REQUEST),
+    ORDER_NOT_FOUND(1019, "Order not found", HttpStatus.NOT_FOUND),
+    COLOR_NOT_FOUND(1020, "Color not found", HttpStatus.NOT_FOUND),
     ;
 
     ErrorCode(int code, String message, HttpStatusCode statusCode) {

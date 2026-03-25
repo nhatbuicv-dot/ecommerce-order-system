@@ -1,5 +1,6 @@
 package com.ecommerce.platform.dto.request;
 
+import com.ecommerce.platform.entity.Color;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -9,8 +10,8 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProductVariantCreateRequest {
-    String color;
-    String storage;
+    ColorRequest color;
+    String size;
     double price;
     int quantity;
 }

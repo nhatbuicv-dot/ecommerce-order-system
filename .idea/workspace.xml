@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c748867d-6c90-427e-991b-bb2b368298c3" name="Changes" comment="feat(product): add product, images and variants management with authorization">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/configuration/SecurityUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/controller/CartController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/controller/CartItemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/controller/OrderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/request/CartItemRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/request/CartRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/request/ColorRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/request/OrderRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/CartItemResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/CartResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/ColorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/OrderItemResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/OrderResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/entity/Cart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/entity/CartItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/entity/Color.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/entity/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/entity/OrderItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/entity/ShippingAddress.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/mapper/CartItemMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/mapper/OrderItemMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/repository/CartItemRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/repository/CartRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/repository/ColorRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/repository/OrderItemReposiory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/repository/OrderRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/service/CartItemService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/service/CartService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/configuration/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/request/ProductCreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/request/ProductCreateRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/request/ProductUpdateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/request/ProductUpdateRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/request/ProductVariantCreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/request/ProductVariantCreateRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/request/ReviewCreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/request/ReviewCreateRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/request/UserUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/request/UserUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/ApiResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/ProductAdminResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/ProductAdminResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/ProductListResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/ProductListResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/ProductResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/ProductResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/ProductVariantResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/ProductVariantResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/ReviewResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/dto/response/ReviewResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/entity/ProductVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/entity/ProductVariant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/entity/Review.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/enums/AuthProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/exception/ErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/mapper/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/mapper/ProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/mapper/ProductVariantMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/mapper/ProductVariantMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/mapper/ReviewMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/repository/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/repository/ProductVariantRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/repository/ProductVariantRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/repository/ReviewRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/service/ProductVariantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/service/ProductVariantService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/java/com/ecommerce/platform/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce-order-system/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce-order-system/src/main/resources/application.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;nhatbuicv-dot&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/nhatbuicv-dot/ecommerce-order-system.git&quot;,
+    &quot;accountId&quot;: &quot;20622b74-3a83-4c80-90a1-4c2096c4fff8&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="3AqkAZAnnxBJw4nkRGtkozTRgeL" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.EcommerceOrderSystemApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/ecommerce-order-system&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.ecommerce.platform.entity" />
+      <recent name="com.ecommerce.platform.dto.request" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="EcommerceOrderSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ecommerce-order-system" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ecommerce.platform.EcommerceOrderSystemApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.26775.15" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.26775.15" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c748867d-6c90-427e-991b-bb2b368298c3" name="Changes" comment="" />
+      <created>1773327346619</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1773327346619</updated>
+      <workItem from="1773327347867" duration="26000" />
+      <workItem from="1773463575063" duration="11000" />
+      <workItem from="1773471240541" duration="20093000" />
+      <workItem from="1773538102778" duration="14688000" />
+      <workItem from="1773627969415" duration="17927000" />
+      <workItem from="1773709231424" duration="5929000" />
+      <workItem from="1773810284882" duration="994000" />
+      <workItem from="1773812736397" duration="16152000" />
+      <workItem from="1773882642924" duration="18953000" />
+      <workItem from="1773969223714" duration="6758000" />
+      <workItem from="1773990280344" duration="8906000" />
+      <workItem from="1774064145301" duration="11000" />
+      <workItem from="1774084597491" duration="1530000" />
+      <workItem from="1774086159743" duration="4782000" />
+      <workItem from="1774155558878" duration="1871000" />
+      <workItem from="1774279047927" duration="3897000" />
+      <workItem from="1774311903494" duration="28126000" />
+      <workItem from="1774372655335" duration="169000" />
+      <workItem from="1774401903056" duration="3909000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat(product): add product, images and variants management with authorization">
+      <option name="closed" value="true" />
+      <created>1773503753581</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1773503753581</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat(product): add product, images and variants management with authorization" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(product): add product, images and variants management with authorization" />
+  </component>
+</project>

@@ -1,18 +1,17 @@
 package com.ecommerce.platform.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ReviewResponse {
 
-    private String id;
-    private String userName;
-    private int rating;
-    private String comment;
+     String id;
+     String userName;
+     int rating;
+     String comment;
 }

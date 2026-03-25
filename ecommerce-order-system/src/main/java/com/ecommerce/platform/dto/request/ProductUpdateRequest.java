@@ -1,5 +1,6 @@
 package com.ecommerce.platform.dto.request;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +16,7 @@ public class ProductUpdateRequest {
     String name;
     String brand;
     String description;
+    @NotNull(message = "CATEGORY_ID_REQUIRED")
     String categoryId;
 
     List<ProductVariantCreateRequest> variants;

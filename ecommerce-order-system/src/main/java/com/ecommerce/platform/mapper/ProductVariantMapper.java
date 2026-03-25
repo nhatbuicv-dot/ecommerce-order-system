@@ -11,13 +11,12 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ProductVariantMapper {
+    @Mapping(target = "color", source = "color")
     ProductVariantResponse toProductVariantResponse(ProductVariant productVariant);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "product", ignore = true)
     ProductVariant toProductVariant(ProductVariantCreateRequest variantAddRequest);
-
-    List<ProductVariantResponse> toResponseList(List<ProductVariant> variants);
 
     void updateProductVariant(@MappingTarget ProductVariant productVariant, ProductVariantCreateRequest request);
 }
