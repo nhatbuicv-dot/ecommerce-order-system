@@ -16,5 +16,5 @@ public class ShippingAddress {
     String lastName;
     String phone;
     String address;
-    String email;
+    String code;
 }

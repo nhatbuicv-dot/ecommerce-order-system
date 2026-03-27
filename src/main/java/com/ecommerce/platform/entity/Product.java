@@ -1,5 +1,6 @@
 package com.ecommerce.platform.entity;
 
+import com.ecommerce.platform.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -44,6 +45,9 @@ public class Product {
 
     Double minPrice;
     Double maxPrice;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status = OrderStatus.PENDING;
 
     public void addVariant(ProductVariant variant){
         variants.add(variant);

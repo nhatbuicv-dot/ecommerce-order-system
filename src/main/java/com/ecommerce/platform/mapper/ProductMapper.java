@@ -15,6 +15,7 @@ import org.mapstruct.MappingTarget;
 public interface ProductMapper {
 
     @Mapping(target = "variants", source = "variants")
+    @Mapping(target = "categoryName" , source = "category.name")
     ProductResponse toProductResponse(Product product);
 
     @Mapping(target = "id", ignore = true)

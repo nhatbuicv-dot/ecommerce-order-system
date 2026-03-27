@@ -29,6 +29,9 @@ jwt:
   valid-duration: 300 # in second
   refreshable-duration: 36000 # in seconds
 
-
+logging:
+  level:
+    org.springframework.security: DEBUG
+    com.ecommerce.platform: DEBUG
 
 

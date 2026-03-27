@@ -3,6 +3,7 @@ package com.ecommerce.platform.controller;
 import com.ecommerce.platform.dto.request.OrderRequest;
 import com.ecommerce.platform.dto.response.ApiResponse;
 import com.ecommerce.platform.dto.response.OrderResponse;
+import com.ecommerce.platform.enums.OrderStatus;
 import com.ecommerce.platform.service.OrderService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -32,5 +33,19 @@ public class OrderController {
                 .build();
     }
 
+    @PostMapping("/admin/status/{orderId}")
+    ApiResponse<OrderResponse> adminUpdateStatus (@PathVariable String orderId, @RequestParam OrderStatus status) {
+        return ApiResponse.<OrderResponse>builder()
+                .result(orderService.updateStatusOrder(orderId, status))
+                .build();
+    }
+
+    @PostMapping("/user/cancel/{orderId}")
+    ApiResponse<String> userUpdateStatus (@PathVariable String orderId) {
+        orderService.cancelOrder(orderId);
+        return ApiResponse.<String>builder()
+                .result("Order has been cancelled")
+                .build();
+    }
 
 }

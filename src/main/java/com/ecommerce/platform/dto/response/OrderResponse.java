@@ -15,6 +15,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class OrderResponse {
     String id;
+    String userId;
     String status;
     List<OrderItemResponse> orderItems;
     Double total;

@@ -1,5 +1,6 @@
 package com.ecommerce.platform.entity;
 
+import com.ecommerce.platform.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -29,6 +30,9 @@ public class Order {
     List<OrderItem> orderItems = new ArrayList<>();
 
     Double totalPrice;
+
+    @Enumerated(EnumType.STRING) // lưu xuống database dưới dạng String
+    OrderStatus orderStatus =OrderStatus.PENDING;
 
     @Embedded
     ShippingAddress shippingAddress;

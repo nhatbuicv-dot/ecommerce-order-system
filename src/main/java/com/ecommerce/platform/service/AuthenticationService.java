@@ -139,6 +139,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
+                .userName(user.getUsername())
                 .build();
     }
 
